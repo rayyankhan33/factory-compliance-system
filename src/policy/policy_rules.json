@@ -1,0 +1,54 @@
+[
+  {
+    "class_id": 0,
+    "domain": "Pedestrian Movement",
+    "policy_section": 3,
+    "policy_rule_ref": "Section 3.3.2",
+    "unsafe_behavior": "Safe Walkway Violation",
+    "safe_behavior": "Safe Walkway",
+    "safe_behavior_ref": "Section 3.3.1",
+    "observable_indicator": "A Safe Walkway Violation is defined as movement or presence outside the boundaries of the green-marked Designated Safe Walkway.",
+    "unsafe_behavior_full_text": "A Safe Walkway Violation is defined as movement or presence outside the boundaries of the green-marked Designated Safe Walkway. This is the most frequently occurring unsafe behavior documented at this facility. A Safe Walkway Violation is detected when a person's position in the video frame places them beyond the green walkway boundaries and into an area designated for machinery or vehicle operation. The Safe Walkway Violation is the highest-frequency unsafe behavior recorded at this facility. The frequency of this behavior reflects a tendency among personnel to treat minor WARNING deviations from the walkway as inconsequential. Any deviation from the green-marked boundaries places the individual in proximity to forklift and machinery hazards and will be treated as an unsafe behavior event",
+    "callout_type": "WARNING",
+    "high_frequency_flagged": true
+  },
+  {
+    "class_id": 1,
+    "domain": "Equipment Interaction",
+    "policy_section": 4,
+    "policy_rule_ref": "Section 4.3.2",
+    "unsafe_behavior": "Unauthorized Intervention",
+    "safe_behavior": "Authorized Intervention",
+    "safe_behavior_ref": "Section 4.3.1",
+    "observable_indicator": "An Unauthorized Intervention is defined as any of the following observable situations: \u2022 A person interacting with or adjusting production equipment while wearing a red-black vest or any vest other than the designated green authorization vest.",
+    "unsafe_behavior_full_text": "An Unauthorized Intervention is defined as any of the following observable situations: \u2022 A person interacting with or adjusting production equipment while wearing a red-black vest or any vest other than the designated green authorization vest. \u2022 A person interacting with or adjusting production equipment while not wearing the required safety equipment for the task. \u2022 A person intervening in a work situation at a production site without the observable indicators of authorization (i.e., the green vest). The green safety vest is the primary and most readily observable indicator of authorization status. Any person seen interacting with equipment who is not wearing the green vest CRITICAL must be assumed to be performing an Unauthorized Intervention. This classification SAFETY applies regardles",
+    "callout_type": "CRITICAL_SAFETY_NOTICE",
+    "high_frequency_flagged": false
+  },
+  {
+    "class_id": 2,
+    "domain": "Electrical Safety",
+    "policy_section": 5,
+    "policy_rule_ref": "Section 5.2.2",
+    "unsafe_behavior": "Opened Panel Cover",
+    "safe_behavior": "Closed Panel Cover",
+    "safe_behavior_ref": "Section 5.2.1",
+    "observable_indicator": "Opened Panel Cover is defined as the condition in which the cover of an electrical panel connected to a production machine has been left in the open position.",
+    "unsafe_behavior_full_text": "Opened Panel Cover is defined as the condition in which the cover of an electrical panel connected to a production machine has been left in the open position. This includes both the deliberate leaving of a panel cover open and the inadvertent forgetting to close a panel cover after accessing it. An Opened Panel Cover is detected when the surveillance system observes a panel in the open-cover state during production operations. The condition is an unsafe behavior event regardless of how long the panel has been open or whether personnel are in the immediate vicinity at the moment of detection. Leaving a panel cover open \u2014 even when doing so feels like a minor or temporary oversight \u2014 is classified as an unsafe behavior under this Manual. The automated WARNING detection system monitors panel ",
+    "callout_type": "WARNING",
+    "high_frequency_flagged": false
+  },
+  {
+    "class_id": 3,
+    "domain": "Forklift Load",
+    "policy_section": 6,
+    "policy_rule_ref": "Section 6.3.2",
+    "unsafe_behavior": "Carrying Overload with Forklift",
+    "safe_behavior": "Safe Carrying",
+    "safe_behavior_ref": "Section 6.3.1",
+    "observable_indicator": "Carrying Overload with Forklift is defined as operating a forklift while carrying three (3) or more standardized blocks in a single load.",
+    "unsafe_behavior_full_text": "Carrying Overload with Forklift is defined as operating a forklift while carrying three (3) or more standardized blocks in a single load. Three or more blocks on the forks during any phase of a load operation \u2014 including travel, maneuvering, and loading/unloading \u2014 constitutes an unsafe behavior event. CRITICAL The block count threshold is unambiguous: two blocks or fewer is safe; three blocks or SAFETY more is an overload. Any observed forklift load of three or more standardized blocks will NOTICE be treated as a Carrying Overload with Forklift event and will trigger an immediate alert.",
+    "callout_type": "CRITICAL_SAFETY_NOTICE",
+    "high_frequency_flagged": false
+  }
+]

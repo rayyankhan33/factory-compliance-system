@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Environments
+.venv/
+env/
+venv/
+
+# Datasets and large weights
+data/
+*.pt
+*.onnx
+
+# OS generated files
+.DS_Store

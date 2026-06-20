@@ -1,0 +1,138 @@
+{
+  "0": [
+    {
+      "label": "person",
+      "bbox": [
+        350,
+        250,
+        450,
+        420
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "1": [
+    {
+      "label": "person",
+      "bbox": [
+        350,
+        250,
+        450,
+        420
+      ],
+      "confidence": 0.9
+    },
+    {
+      "label": "forklift",
+      "bbox": [
+        350,
+        200,
+        500,
+        420
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "2": [
+    {
+      "label": "person",
+      "bbox": [
+        50,
+        300,
+        150,
+        500
+      ],
+      "confidence": 0.9
+    },
+    {
+      "label": "electrical panel",
+      "bbox": [
+        200,
+        300,
+        320,
+        500
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "3": [
+    {
+      "label": "person",
+      "bbox": [
+        50,
+        300,
+        150,
+        500
+      ],
+      "confidence": 0.9
+    },
+    {
+      "label": "electrical panel",
+      "bbox": [
+        200,
+        300,
+        320,
+        500
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "4": [
+    {
+      "label": "electrical panel",
+      "bbox": [
+        600,
+        100,
+        750,
+        300
+      ],
+      "confidence": 0.8
+    }
+  ],
+  "5": [
+    {
+      "label": "electrical panel",
+      "bbox": [
+        600,
+        100,
+        750,
+        300
+      ],
+      "confidence": 0.8
+    },
+    {
+      "label": "person",
+      "bbox": [
+        760,
+        150,
+        830,
+        320
+      ],
+      "confidence": 0.9
+    }
+  ],
+  "6": [
+    {
+      "label": "forklift",
+      "bbox": [
+        100,
+        500,
+        420,
+        620
+      ],
+      "confidence": 0.85
+    }
+  ],
+  "7": [
+    {
+      "label": "forklift",
+      "bbox": [
+        100,
+        500,
+        420,
+        620
+      ],
+      "confidence": 0.85
+    }
+  ]
+}
