@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Factory Compliance & Alert Escalation System — Real-time video monitoring dashboard for occupational safety compliance.">
+    <title>Factory Compliance Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏭</text></svg>">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Header
+     ═══════════════════════════════════════════════════════════════ -->
+<header class="app-header">
+    <h1>
+        <span class="icon">🏭</span>
+        Factory Compliance & Alert Escalation System
+    </h1>
+    <div class="header-status">
+        <div class="status-indicator">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text">Idle</span>
+        </div>
+        <div class="status-indicator">
+            📹 <span id="total-clips">0</span> clips available
+        </div>
+    </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Tabs
+     ═══════════════════════════════════════════════════════════════ -->
+<nav class="tab-container">
+    <button class="tab-btn active" data-tab="live">
+        📹 Live Feed Monitor
+        <span class="badge hidden" id="alert-count-badge">0</span>
+    </button>
+    <button class="tab-btn" data-tab="timeline">
+        🚨 Alert Timeline Stream
+    </button>
+    <button class="tab-btn" data-tab="history">
+        📊 Historical Log & Export
+    </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Tab A — Live Feed Monitor
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="tab-content active" id="tab-live">
+
+    <!-- Controls -->
+    <div class="live-controls">
+        <div class="source-select">
+            <select id="video-select">
+                <option value="">— Loading video clips... —</option>
+            </select>
+        </div>
+        <div class="source-input">
+            <input type="text" id="custom-source" placeholder="Or enter RTSP URL / webcam index (e.g. 0)">
+        </div>
+        <button class="btn btn-primary" id="btn-start">▶ Start Analysis</button>
+        <button class="btn btn-danger" id="btn-stop" disabled>⏹ Stop</button>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-label">Status</div>
+            <div class="stat-value" id="stat-status">idle</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Processing FPS</div>
+            <div class="stat-value text-green" id="stat-fps">0.0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Frames Processed</div>
+            <div class="stat-value" id="stat-frames">0</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Violations Detected</div>
+            <div class="stat-value text-red" id="stat-violations">0</div>
+        </div>
+    </div>
+
+    <!-- Main Layout: Video + Violations -->
+    <div class="live-layout">
+
+        <!-- Video Panel -->
+        <div class="video-panel">
+            <img id="video-feed" class="hidden" alt="Live analyzed video feed">
+            <div id="video-placeholder" class="video-placeholder">
+                <div class="placeholder-icon">📹</div>
+                <p>Select a video clip from the dropdown or enter an RTSP URL, then click <strong>Start Analysis</strong> to begin real-time compliance monitoring.</p>
+                <p class="mt-16" style="font-size: 0.82rem; opacity: 0.6;">
+                    Supports: MP4 files, RTSP streams, USB webcams (enter device index like "0")
+                </p>
+            </div>
+        </div>
+
+        <!-- Live Violations Panel -->
+        <div class="violations-panel">
+            <div class="violations-header">
+                <h3>🔴 Live Violations</h3>
+                <span class="violation-count" id="live-violation-count">0</span>
+            </div>
+            <div class="violations-list" id="violations-list">
+                <!-- dynamically populated -->
+            </div>
+            <div id="violations-empty" class="violations-empty">
+                <div class="empty-icon">✅</div>
+                <p>No violations detected yet.<br>Start analyzing a video to see violations appear here in real-time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Tab B — Alert Timeline Stream
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="tab-content" id="tab-timeline">
+
+    <div class="timeline-controls">
+        <h2 style="font-size: 1.1rem; font-weight: 600;">Alert Timeline Stream</h2>
+        <button class="btn btn-secondary" id="btn-timeline-refresh">🔄 Auto-refresh (5s)</button>
+        <button class="btn btn-secondary" onclick="loadTimeline()">⟳ Refresh Now</button>
+    </div>
+
+    <div class="timeline-list" id="timeline-list">
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <p>No events logged yet. Start processing a video clip to see events appear here.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Tab C — Historical Log & Export
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="tab-content" id="tab-history">
+
+    <!-- Filters -->
+    <div class="filter-bar">
+        <div class="filter-group">
+            <label>Severity</label>
+            <select id="filter-severity">
+                <option value="">All</option>
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+                <option value="CRITICAL">Critical</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Behavior Class</label>
+            <select id="filter-class">
+                <option value="">All</option>
+                <option value="0">Safe Walkway Violation</option>
+                <option value="1">Unauthorized Intervention</option>
+                <option value="2">Opened Panel Cover</option>
+                <option value="3">Carrying Overload with Forklift</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Start Date</label>
+            <input type="date" id="filter-start-date">
+        </div>
+        <div class="filter-group">
+            <label>End Date</label>
+            <input type="date" id="filter-end-date">
+        </div>
+        <button class="btn btn-primary" id="btn-apply-filters">🔍 Apply Filters</button>
+
+        <div class="export-buttons">
+            <span id="history-count" style="font-size: 0.82rem; color: var(--text-muted); align-self: center;"></span>
+            <button class="btn btn-secondary" id="btn-export-csv">⬇️ Export CSV</button>
+            <button class="btn btn-secondary" id="btn-export-json">⬇️ Export JSON</button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="data-table-container">
+        <div class="table-scroll">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>Clip ID</th>
+                        <th>Zone</th>
+                        <th>Behavior Class</th>
+                        <th>Policy Ref</th>
+                        <th>Severity</th>
+                        <th>Description</th>
+                        <th>Escalation</th>
+                    </tr>
+                </thead>
+                <tbody id="history-tbody">
+                    <!-- dynamically populated -->
+                </tbody>
+            </table>
+        </div>
+        <div id="history-empty" class="empty-state hidden">
+            <div class="empty-icon">📋</div>
+            <p>No records match the current filters. Try adjusting your filter criteria.</p>
+        </div>
+    </div>
+</section>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
