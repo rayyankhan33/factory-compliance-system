@@ -6,10 +6,29 @@ Built as part of an AI engineering internship screening challenge.
 
 ---
 
-## 📸 Screenshots
+## 📸 Screen Recordings
 
 > **Dashboard — Live Feed Monitor**
 > 
+
+
+
+
+
+
+https://github.com/user-attachments/assets/b55edc1d-e990-4d2a-8e5c-4138f19aa4bb
+
+
+https://github.com/user-attachments/assets/fb48a29e-5106-4f40-9495-34d3374c9568
+
+
+
+
+
+
+
+## 📸 Screenshots
+
 <img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/3c47224f-5e6b-4340-92a3-cbd772dce58c" />
 
 > **Dashboard — Alert Timeline Stream**
