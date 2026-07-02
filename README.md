@@ -1,8 +1,8 @@
-# 🏭 Factory Compliance & Alert Escalation System
+# Factory Compliance & Alert Escalation System
 
 An end-to-end automated compliance monitoring system that ingests factory surveillance video, parses a regulatory policy document, detects unsafe behaviors in real time, classifies violations by severity, and routes alerts through a live operations dashboard.
 
-Built as part of an AI engineering internship screening challenge.
+
 
 ---
 
